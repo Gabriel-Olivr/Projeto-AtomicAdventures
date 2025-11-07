@@ -1,0 +1,28 @@
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.exe
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.deps.json
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.runtimeconfig.json
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.dll
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.pdb
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.AssemblyInfoInputs.cache
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.AssemblyInfo.cs
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.csproj.CoreCompileInputs.cache
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.dll
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\refint\JogoDetetive.dll
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.pdb
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.genruntimeconfig.cache
+C:\Users\Thais Oliveira\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\ref\JogoDetetive.dll
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.exe
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.deps.json
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.runtimeconfig.json
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.dll
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\bin\Debug\net9.0\JogoDetetive.pdb
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.AssemblyInfoInputs.cache
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.AssemblyInfo.cs
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.csproj.CoreCompileInputs.cache
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.dll
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\refint\JogoDetetive.dll
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.pdb
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\JogoDetetive.genruntimeconfig.cache
+C:\Users\gabri\OneDrive\Documentos\PROJETOS\jogo\JogoDetetive\obj\Debug\net9.0\ref\JogoDetetive.dll
