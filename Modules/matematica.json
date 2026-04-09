@@ -1,0 +1,272 @@
+[
+  {
+    "id": "m1",
+    "prompt": "Se 3 caixas contêm 12 maçãs no total e cada caixa tem o mesmo número, quantas maçãs há em cada caixa? Multiplique por 2 para obter a pista final.",
+    "answer": "8",
+    "hint": "Divida o total pelo número de caixas, depois multiplique por 2.",
+    "explanation": "12 ÷ 3 = 4; 4 × 2 = 8.",
+    "clue": "A pessoa usa óculos e gosta de xadrez.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m2",
+    "prompt": "Resolva: 5 + (3 × 2) - 4 = ?",
+    "answer": "7",
+    "hint": "Siga a precedência das operações (multiplicação antes de soma/subtração).",
+    "explanation": "3 × 2 = 6; 5 + 6 - 4 = 7.",
+    "clue": "Deixou uma luva no local.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m3",
+    "prompt": "Um laboratório tem 48 tubos de ensaio organizados em 6 prateleiras iguais. Quantos tubos há por prateleira?",
+    "answer": "8",
+    "hint": "Divida o total de tubos pelo número de prateleiras.",
+    "explanation": "48 ÷ 6 = 8 tubos por prateleira.",
+    "clue": "O suspeito foi visto no turno da tarde.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m4",
+    "prompt": "Se 1/4 de uma fortuna de 100 moedas de ouro foi roubada, quantas moedas restaram no cofre?",
+    "answer": "75",
+    "hint": "Calcule quanto foi roubado dividindo o total por 4, depois subtraia do total original.",
+    "explanation": "100 ÷ 4 = 25 moedas roubadas. 100 - 25 = 75 moedas restantes.",
+    "clue": "O suspeito tem cabelos escuros.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m5",
+    "prompt": "Um cofre tem 50% de sua capacidade preenchida com 20 barras de ouro. Qual é a capacidade total de barras do cofre?",
+    "answer": "40",
+    "hint": "Se 50% (a metade) equivale a 20, multiplique por 2 para achar o total (100%).",
+    "explanation": "20 × 2 = 40 barras de ouro.",
+    "clue": "Usa um relógio prateado no pulso direito.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m6",
+    "prompt": "A senha de um cadeado segue uma sequência lógica: 2, 4, 8... Qual é o próximo número?",
+    "answer": "16",
+    "hint": "Observe que cada número é o dobro do número anterior.",
+    "explanation": "2 × 2 = 4; 4 × 2 = 8; 8 × 2 = 16.",
+    "clue": "Tem um leve sotaque estrangeiro.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m7",
+    "prompt": "Durante a fuga, o suspeito andou 5 quarteirões para o norte e depois recuou 3 quarteirões para o sul. A que distância (em quarteirões) ele está do ponto inicial?",
+    "answer": "2",
+    "hint": "Como ele voltou na mesma direção, basta subtrair o segundo valor do primeiro.",
+    "explanation": "5 - 3 = 2 quarteirões.",
+    "clue": "Carrega uma mochila de couro preta.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m8",
+    "prompt": "Um trem de fuga passa a cada 15 minutos. Se um trem passou às 10:00, qual será o minuto exato em que o próximo trem passará após as 10:10?",
+    "answer": "15",
+    "hint": "Some os 15 minutos de intervalo ao horário em que o primeiro trem passou (10:00).",
+    "explanation": "10:00 + 15 minutos = 10:15. O minuto exato é 15.",
+    "clue": "Deixou um copo com cheiro de café recém-passado.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m9",
+    "prompt": "Havia 15 documentos na mesa. O vento derrubou 4, mas o investigador encontrou mais 7 na gaveta. Quantos documentos há em mãos agora?",
+    "answer": "18",
+    "hint": "Subtraia os documentos perdidos e some os encontrados.",
+    "explanation": "15 - 4 = 11; 11 + 7 = 18.",
+    "clue": "O suspeito manca levemente da perna esquerda.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m10",
+    "prompt": "Um prêmio de 300 mil reais será dividido igualmente entre 4 cúmplices. Quanto cada um recebe (em milhares)? Digite apenas o número.",
+    "answer": "75",
+    "hint": "Divida 300 por 4.",
+    "explanation": "300 ÷ 4 = 75 (mil).",
+    "clue": "Possui uma cicatriz na palma da mão.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "m11",
+    "prompt": "Descubra a idade do suspeito: O dobro da idade dele menos 10 é igual a 50. Quantos anos ele tem?",
+    "answer": "30",
+    "hint": "Monte a equação: 2x - 10 = 50. Passe o 10 somando, depois divida por 2.",
+    "explanation": "2x = 50 + 10; 2x = 60; x = 30.",
+    "clue": "Nasceu na década de 90.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m12",
+    "prompt": "No estacionamento da fuga há carros e motos, totalizando 10 veículos e 32 rodas. Quantos carros há no local?",
+    "answer": "6",
+    "hint": "Um carro tem 4 rodas e uma moto tem 2. Tente chutar valores ou monte um sistema de equações.",
+    "explanation": "Se fossem 10 motos, teríamos 20 rodas. Faltam 12 rodas. Como cada carro tem 2 rodas a mais que a moto, 12 ÷ 2 = 6 carros. (6x4 = 24 rodas de carro + 4x2 = 8 rodas de moto = 32 rodas).",
+    "clue": "Fugiu dirigindo um sedã prata.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m13",
+    "prompt": "Se 3 investigadores resolvem 6 enigmas em 1 hora, quantos enigmas 5 investigadores resolvem no mesmo tempo?",
+    "answer": "10",
+    "hint": "Descubra quantos enigmas 1 investigador resolve por hora e multiplique por 5.",
+    "explanation": "6 ÷ 3 = 2 enigmas por investigador. 5 × 2 = 10 enigmas.",
+    "clue": "Faz parte de uma quadrilha bem organizada.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m14",
+    "prompt": "A planta da sala do cofre mostra um retângulo. O lado maior mede 10m e o menor 5m. Qual é o perímetro da sala (em metros)?",
+    "answer": "30",
+    "hint": "O perímetro é a soma de todos os quatro lados do retângulo.",
+    "explanation": "10 + 10 + 5 + 5 = 30m.",
+    "clue": "Conhece muito bem a planta arquitetônica do prédio.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m15",
+    "prompt": "O local do crime é uma sala perfeitamente quadrada com uma área de 64m². Qual é o comprimento (em metros) de uma das paredes?",
+    "answer": "8",
+    "hint": "A área de um quadrado é o lado multiplicado por ele mesmo (L²). Qual número vezes ele mesmo dá 64?",
+    "explanation": "√64 = 8m.",
+    "clue": "Deixou pegadas compatíveis com sapatos tamanho 40.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m16",
+    "prompt": "Uma das obras de arte roubadas custava 200 mil reais, mas foi repassada no mercado negro com 30% de lucro. Qual foi o valor do lucro (em milhares)? Digite apenas o número.",
+    "answer": "60",
+    "hint": "Calcule 10% de 200 e multiplique por 3.",
+    "explanation": "10% de 200 = 20. 20 × 3 = 60.",
+    "clue": "Tem gosto por artigos de altíssimo luxo.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m17",
+    "prompt": "O suspeito fugiu por um parque cortando caminho na diagonal. O parque tem formato retangular de 3km por 4km. Quantos km ele andou na diagonal?",
+    "answer": "5",
+    "hint": "Use o Teorema de Pitágoras: a soma dos quadrados dos catetos é igual ao quadrado da hipotenusa (3² + 4² = x²).",
+    "explanation": "3² + 4² = 9 + 16 = 25. A raiz quadrada de 25 é 5.",
+    "clue": "Está em excelente forma física para conseguir correr 5km.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m18",
+    "prompt": "O rastreador mostrou a equação de distância: 3(x + 2) = 21. Qual é a coordenada 'x' do esconderijo?",
+    "answer": "5",
+    "hint": "Divida ambos os lados por 3, ou distribua o 3 multiplicando o x e o 2.",
+    "explanation": "x + 2 = 21 ÷ 3; x + 2 = 7; x = 7 - 2; x = 5.",
+    "clue": "O suspeito é destro (foi visto segurando uma chave com a direita).",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m19",
+    "prompt": "O carro de fuga consome 10 litros de gasolina a cada 100 km. Quantos litros ele precisará para chegar a um porto a 250 km de distância?",
+    "answer": "25",
+    "hint": "Se 100 km usam 10L, 200 km usam 20L. Calcule a metade disso para os 50 km restantes.",
+    "explanation": "10L / 100km = 0.1L por km. 0.1 × 250 = 25 litros.",
+    "clue": "Parou recentemente em um posto de combustível na rota sul.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m20",
+    "prompt": "O bandido levou 1/3 das joias na bolsa A e 1/2 na bolsa B. Que fração total (em sextos) ele levou? Digite apenas o número do numerador (a parte de cima).",
+    "answer": "5",
+    "hint": "Encontre o denominador comum (6) e some as frações equivalentes (2/6 + 3/6).",
+    "explanation": "1/3 = 2/6; 1/2 = 3/6. 2/6 + 3/6 = 5/6. O numerador é 5.",
+    "clue": "Dividiu o produto do roubo em duas partes para dificultar a busca.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "m21",
+    "prompt": "O quadrado de um número da senha menos o próprio número é igual a 12 (x² - x = 12). Qual é a raiz positiva (a senha)?",
+    "answer": "4",
+    "hint": "Reorganize para x² - x - 12 = 0. Pense em dois números que somados dão 1 e multiplicados dão -12.",
+    "explanation": "As raízes de x² - x - 12 = 0 são 4 e -3. A raiz positiva é 4.",
+    "clue": "O suspeito não age sozinho, ele tem um irmão gêmeo.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m22",
+    "prompt": "A área da base do esconderijo retangular é 15m². O comprimento é 2m maior que a largura 'x' (x(x+2) = 15). Qual é a medida da largura em metros?",
+    "answer": "3",
+    "hint": "A equação é x² + 2x - 15 = 0. Use a fórmula de Bhaskara ou pense em dois números cuja diferença é 2 e o produto é 15.",
+    "explanation": "x² + 2x - 15 = 0. As raízes são 3 e -5. Como é uma medida, x = 3.",
+    "clue": "A base de operações criminosas fica no 3º andar de um prédio comercial.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m23",
+    "prompt": "A criptografia principal segue a equação: x² - 7x + 10 = 0. A chave para abrir o arquivo é a SOMA das duas raízes dessa equação. Qual é a chave?",
+    "answer": "7",
+    "hint": "Em uma equação ax² + bx + c = 0, a soma das raízes é dada por -b/a.",
+    "explanation": "A soma é -(-7)/1 = 7. (As raízes são 2 e 5, cuja soma é 7).",
+    "clue": "A arma encontrada no local era de calibre 7mm.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m24",
+    "prompt": "O cofre requer um código baseado na equação 2x² - 8x + 6 = 0. O código é o PRODUTO das raízes reais dessa equação. Qual é o código?",
+    "answer": "3",
+    "hint": "Em uma equação ax² + bx + c = 0, o produto das raízes é dado por c/a.",
+    "explanation": "O produto é c/a = 6/2 = 3. (As raízes são 1 e 3, cujo produto é 3).",
+    "clue": "O número do voo de fuga do suspeito é um múltiplo de 3.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m25",
+    "prompt": "Descobrimos que a soma de dois números do IP do hacker é 8, e o produto deles é 15. Qual é o maior desses dois números?",
+    "answer": "5",
+    "hint": "Isso pode ser escrito como a equação x² - 8x + 15 = 0. Quais são as raízes?",
+    "explanation": "Os números que somados dão 8 e multiplicados dão 15 são 3 e 5. O maior é 5.",
+    "clue": "O primeiro nome do suspeito é composto por 5 letras.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m26",
+    "prompt": "Um bilhete dizia: 'O quadrado do meu número da sorte é igual a 4 vezes esse mesmo número, mais 5'. Encontre a raiz positiva para descobrir o número da sorte.",
+    "answer": "5",
+    "hint": "Monte a equação: x² = 4x + 5, que vira x² - 4x - 5 = 0.",
+    "explanation": "x² - 4x - 5 = 0. As raízes são 5 e -1. O número positivo é 5.",
+    "clue": "O suspeito usa um anel de ouro maciço no dedo indicador.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m27",
+    "prompt": "O trajeto do voo do suspeito faz uma parábola descrita por h(x) = -x² + 6x - 5. Em que momento 'x' a altura atinge o ponto máximo? (Dica: calcule o x do vértice).",
+    "answer": "3",
+    "hint": "O x do vértice em uma equação do 2º grau é calculado pela fórmula -b / (2a).",
+    "explanation": "x_v = -6 / (2 × -1) = -6 / -2 = 3.",
+    "clue": "O crime foi meticulosamente planejado para ocorrer numa quarta-feira (3º dia útil).",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m28",
+    "prompt": "Para desativar a bomba relógio, resolva a equação racional: (24 / x) = x - 2. Digite a raiz positiva como resposta para cortar o fio correto.",
+    "answer": "6",
+    "hint": "Multiplique toda a equação por 'x' para transformá-la em uma equação do 2º grau.",
+    "explanation": "24 = x(x - 2) -> x² - 2x - 24 = 0. As raízes são 6 e -4. A resposta é 6.",
+    "clue": "A placa do veículo de fuga termina com o número 6.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m29",
+    "prompt": "A mala de dinheiro tem 3 travas. O código da 1ª é 'x', da 2ª é 'x+2' e da 3ª é 'x+4'. O produto da 1ª pela 2ª trava é igual a 48 (x(x+2) = 48). Qual é o valor positivo da 1ª trava?",
+    "answer": "6",
+    "hint": "Transforme em x² + 2x - 48 = 0. Encontre a raiz positiva.",
+    "explanation": "x² + 2x - 48 = 0. As raízes são 6 e -8. O valor positivo é 6.",
+    "clue": "O criminoso tem contatos para fuga através do porto (Cais 6).",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "m30",
+    "prompt": "Desafio final! A porta para o telhado exige a raiz positiva da equação que modela o tempo restante: 3x² - 27 = 0. Quanto tempo (em minutos) você tem?",
+    "answer": "3",
+    "hint": "Esta é uma equação do 2º grau incompleta. Isole o x². Passe o 27 para o outro lado e divida por 3, depois tire a raiz.",
+    "explanation": "3x² = 27 -> x² = 9 -> x = 3 e x = -3. O tempo positivo é 3.",
+    "clue": "O suspeito está prestes a embarcar no portão 3 do aeroporto. Pegue-o!",
+    "difficulty": "difícil"
+  }
+]

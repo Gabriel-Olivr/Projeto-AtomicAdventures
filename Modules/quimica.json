@@ -1,0 +1,272 @@
+[
+  {
+    "id": "q1",
+    "prompt": "Você tem 2 L de solução A a 1 mol/L e mistura com 1 L de solução B a 2 mol/L (mesma substância). Qual a molaridade final?",
+    "answer": "4/3",
+    "hint": "Use: M_final = (M1×V1 + M2×V2) / (V1 + V2)",
+    "explanation": "(2×1 + 1×2) / (2+1) = 4/3 mol/L ≈ 1,33 mol/L.",
+    "clue": "O suspeito trabalhou no turno da manhã.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q2",
+    "prompt": "Se uma solução 10% m/v tem 5 g de soluto, qual é o volume em mL? (considere % m/v = g soluto / 100 mL solução)",
+    "answer": "50",
+    "hint": "Rearranje: volume (mL) = (g soluto / % m/v) × 100",
+    "explanation": "Volume = (5 / 10) × 100 = 50 mL.",
+    "clue": "Usa perfume cheiroso no casaco.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q3",
+    "prompt": "Quantos mols de NaOH há em 250 mL de solução 0,4 mol/L?",
+    "answer": "0.1",
+    "hint": "Use: n = M × V (com V em litros).",
+    "explanation": "n = 0,4 mol/L × 0,25 L = 0,1 mol.",
+    "clue": "Deixou marcas de sapato tamanho 42.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q4",
+    "prompt": "O perito dissolveu 20 g de um pó suspeito em 80 g de água. Qual é a porcentagem em massa (% m/m) do soluto nessa solução?",
+    "answer": "20",
+    "hint": "A porcentagem é a massa do soluto dividida pela massa TOTAL da solução (soluto + solvente), multiplicada por 100.",
+    "explanation": "Massa total = 20 + 80 = 100 g. % = (20 / 100) × 100 = 20%.",
+    "clue": "O suspeito tem uma tatuagem no antebraço direito.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q5",
+    "prompt": "A solubilidade de um sal é 36 g por 100 g de água. Se o criminoso usar apenas 50 g de água, qual a massa máxima (em gramas) que ele conseguirá dissolver?",
+    "answer": "18",
+    "hint": "Faça uma regra de três simples: se 100 g dissolvem 36 g, 50 g (a metade) dissolvem quanto?",
+    "explanation": "100 g --- 36 g; 50 g --- x. x = 18 g.",
+    "clue": "Usa anéis de prata em vários dedos.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q6",
+    "prompt": "Foram encontrados 50 g de uma substância dissolvidos em um galão que totaliza 2 L de solução. Qual a concentração comum em g/L?",
+    "answer": "25",
+    "hint": "Divida a massa do soluto pelo volume da solução.",
+    "explanation": "C = m / V = 50 g / 2 L = 25 g/L.",
+    "clue": "Tem cabelo curto e escuro.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q7",
+    "prompt": "Um frasco de veneno tem densidade de 1,2 g/mL. Se o assassino usou exatamente 100 mL, qual foi a massa da solução aplicada (em gramas)?",
+    "answer": "120",
+    "hint": "Multiplique o volume pela densidade (d = m / v).",
+    "explanation": "m = d × V = 1,2 g/mL × 100 mL = 120 g.",
+    "clue": "Sempre veste roupas escuras para se camuflar.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q8",
+    "prompt": "Você precisa preparar 0,5 L de uma solução de revelador fotográfico a 10 g/L para checar uma digital. Quantos gramas do pó você precisa?",
+    "answer": "5",
+    "hint": "A massa é igual à concentração multiplicada pelo volume.",
+    "explanation": "m = C × V = 10 g/L × 0,5 L = 5 g.",
+    "clue": "Foi visto carregando uma maleta preta.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q9",
+    "prompt": "O suspeito tentou diluir o veneno adicionando 100 mL de água a 100 mL de uma solução a 20 g/L. Como o volume dobrou, qual a nova concentração (em g/L)?",
+    "answer": "10",
+    "hint": "Se o volume dobra em uma diluição, a concentração cai pela metade.",
+    "explanation": "C1V1 = C2V2 -> 20 × 100 = C2 × 200 -> C2 = 10 g/L.",
+    "clue": "Ele fuma charutos importados.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q10",
+    "prompt": "Uma evidência pesa 150 g no total (solução). A análise indicou que há 30 g de soluto. Qual é a massa do solvente (em gramas)?",
+    "answer": "120",
+    "hint": "A massa da solução é a soma da massa do soluto com a do solvente.",
+    "explanation": "m_solvente = m_solução - m_soluto = 150 - 30 = 120 g.",
+    "clue": "Tem uma cicatriz fina perto do queixo.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q11",
+    "prompt": "A capacidade máxima de um solvente é 40 g/100 mL. O perito jogou 30 g em 100 mL. Quantos gramas MAIS ele pode jogar antes de saturar a mistura?",
+    "answer": "10",
+    "hint": "Subtraia a quantidade já dissolvida da capacidade máxima.",
+    "explanation": "40 g (máximo) - 30 g (já usados) = 10 g restantes.",
+    "clue": "Possui um sotaque bem característico do sul.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q12",
+    "prompt": "Uma solução de ácido tem título em massa de 0,1 (ou 10%). Se a garrafa contém 200 g da mistura, quantos gramas de ácido puro existem lá?",
+    "answer": "20",
+    "hint": "Multiplique a massa total pelo título (0,1).",
+    "explanation": "200 g × 0,1 = 20 g.",
+    "clue": "Costuma frequentar cafeterias no final da tarde.",
+    "difficulty": "fácil"
+  },
+  {
+    "id": "q13",
+    "prompt": "Para apagar provas, o bandido misturou 300 mL de água em 200 mL de um ácido 5 mol/L. Qual a molaridade da solução resultante?",
+    "answer": "2",
+    "hint": "O volume final é 500 mL. Use a fórmula de diluição M1V1 = M2V2.",
+    "explanation": "5 × 200 = M2 × 500 -> 1000 = M2 × 500 -> M2 = 2 mol/L.",
+    "clue": "O laboratório de fachada fica perto das docas.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q14",
+    "prompt": "Na curva de solubilidade, S a 50°C é 80 g/100g de água; a 20°C é 30 g/100g. Resfriando uma solução saturada (com 100g de água) de 50°C para 20°C, qual massa (em gramas) precipita?",
+    "answer": "50",
+    "hint": "A diferença entre as solubilidades nas duas temperaturas será a massa que vai para o fundo (precipitado).",
+    "explanation": "80 g - 30 g = 50 g precipitados.",
+    "clue": "Ele possui conhecimentos avançados em química industrial.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q15",
+    "prompt": "Misturou-se 300 mL de um reagente 2 mol/L com 200 mL do mesmo reagente a 3 mol/L. Qual é a concentração final?",
+    "answer": "2.4",
+    "hint": "M_final = (M1V1 + M2V2) / V_final.",
+    "explanation": "M_final = (2×300 + 3×200) / 500 = (600 + 600) / 500 = 1200 / 500 = 2,4 mol/L.",
+    "clue": "O álibi dele foi forjado pela própria família.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q16",
+    "prompt": "Quantos gramas de NaOH (Massa Molar = 40 g/mol) são necessários para preparar 250 mL de solução 0,2 mol/L?",
+    "answer": "2",
+    "hint": "Ache primeiro o número de mols (n = M×V em litros). Depois multiplique o mol pela Massa Molar.",
+    "explanation": "n = 0,2 × 0,25 = 0,05 mol. Massa = 0,05 mol × 40 g/mol = 2 g.",
+    "clue": "Costuma comprar insumos com dinheiro em espécie.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q17",
+    "prompt": "O laboratório tem uma solução estoque a 12 mol/L. Qual volume (em mL) deve ser retirado para preparar 1,5 L de solução a 0,4 mol/L?",
+    "answer": "50",
+    "hint": "Use M1V1 = M2V2. Lembre-se de converter o V1 achado (em litros) para mililitros.",
+    "explanation": "12 × V1 = 0,4 × 1,5 -> 12 × V1 = 0,6 -> V1 = 0,05 L. 0,05 L = 50 mL.",
+    "clue": "Tem um comparsa que trabalha na segurança do prédio.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q18",
+    "prompt": "Uma bebida encontrada na cena tem 40 mL de etanol em 200 mL do líquido total. Qual é o teor alcoólico (% v/v)?",
+    "answer": "20",
+    "hint": "Divida o volume do soluto pelo volume total da solução e multiplique por 100.",
+    "explanation": "(40 / 200) × 100 = 0,2 × 100 = 20%.",
+    "clue": "Há manchas de graxa nos sapatos dele.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q19",
+    "prompt": "Foi achado 1 frasco com 500 mL contendo 10 g de NaOH (Massa Molar = 40). Qual a Molaridade (mol/L)?",
+    "answer": "0.5",
+    "hint": "Encontre o mol: n = m / MM. Depois calcule Molaridade: M = n / V(litros).",
+    "explanation": "n = 10 / 40 = 0,25 mol. M = 0,25 / 0,5 L = 0,5 mol/L.",
+    "clue": "Sua rota de fuga principal é através da rede de esgoto.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q20",
+    "prompt": "Para concentrar o veneno, o criminoso ferveu 500 mL de uma solução 0,1 mol/L até evaporar o solvente, sobrando apenas 100 mL de solução. Qual a nova Molaridade?",
+    "answer": "0.5",
+    "hint": "A evaporação é o oposto da diluição. O número de mols se mantém, use M1V1 = M2V2.",
+    "explanation": "0,1 × 500 = M2 × 100 -> 50 = M2 × 100 -> M2 = 0,5 mol/L.",
+    "clue": "Possui uma conta bancária não declarada em outro país.",
+    "difficulty": "médio"
+  },
+  {
+    "id": "q21",
+    "prompt": "Misturou-se 1 L de NaCl a 1 mol/L com 1 L de CaCl2 a 1 mol/L. Qual a concentração final apenas de íons Cloreto (Cl-)?",
+    "answer": "1.5",
+    "hint": "Calcule os mols de Cl- de cada sal. O NaCl libera 1 Cl-, e o CaCl2 libera 2 Cl-. Divida a soma dos mols pelo volume total.",
+    "explanation": "NaCl: 1 mol Cl-. CaCl2: 2 mol Cl-. Total = 3 mol Cl-. Volume total = 2 L. Concentração = 3 / 2 = 1,5 mol/L.",
+    "clue": "É o líder da organização de contrabando químico.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q22",
+    "prompt": "A solubilidade a 80°C é 60 g/100 g de água; a 20°C é 20 g. O criminoso resfriou uma solução saturada feita com 200 g de água, de 80°C para 20°C. Quanto precipitou (em gramas)?",
+    "answer": "80",
+    "hint": "A diferença de precipitação na tabela é para 100g de água. Como ele usou 200g, não esqueça de dobrar o resultado.",
+    "explanation": "Em 100 g precipita (60 - 20) = 40 g. Como há 200 g de água, precipita o dobro: 40 × 2 = 80 g.",
+    "clue": "A senha do seu cofre pessoal começa com 8.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q23",
+    "prompt": "A análise da água da caixa d'água acusou 2 mg de um metal pesado dissolvido em 1 kg de água. Qual a concentração em partes por milhão (ppm)?",
+    "answer": "2",
+    "hint": "Em soluções aquosas diluídas, 1 ppm equivale a 1 mg de soluto por quilograma (kg) de solução.",
+    "explanation": "2 mg em 1 kg de água corresponde diretamente a 2 ppm.",
+    "clue": "Deixou vestígios do seu DNA no laboratório secreto.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q24",
+    "prompt": "Na titulação da evidência, 20 mL de um ácido (HA) neutralizaram completamente 40 mL de uma base (BOH) 0,5 mol/L. Qual a concentração (mol/L) do ácido?",
+    "answer": "1",
+    "hint": "Como a estequiometria é 1:1, a igualdade é M_acido × V_acido = M_base × V_base.",
+    "explanation": "M_a × 20 = 0,5 × 40 -> 20 × M_a = 20 -> M_a = 1 mol/L.",
+    "clue": "Costuma se disfarçar como inspetor de controle de qualidade.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q25",
+    "prompt": "O frasco 2 contém uma mistura com 1 mol de soluto e 9 mols de água. Qual é a fração molar do soluto nessa mistura?",
+    "answer": "0.1",
+    "hint": "A fração molar é o número de mols do soluto dividido pelo total de mols da mistura (soluto + solvente).",
+    "explanation": "Fração = 1 / (1 + 9) = 1 / 10 = 0,1.",
+    "clue": "Seu carro está estacionado na rua atrás da fábrica.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q26",
+    "prompt": "Uma substância de Massa Molar 40 g/mol tem concentração comum de 40 g/L. Qual é a sua molaridade (mol/L)?",
+    "answer": "1",
+    "hint": "A Molaridade pode ser calculada dividindo a concentração comum (C) pela Massa Molar (MM).",
+    "explanation": "M = C / MM = 40 / 40 = 1 mol/L.",
+    "clue": "O ataque final está planejado para a meia-noite de hoje.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q27",
+    "prompt": "Descubra a Molaridade: Uma solução industrial de NaOH (MM=40) indica 40% em massa (m/m) e densidade de 1,2 g/mL.",
+    "answer": "12",
+    "hint": "Use a fórmula de conversão: C = M × MM = 10 × d × %. Assim, M = (10 × d × %) / MM.",
+    "explanation": "M = (10 × 1,2 × 40) / 40 = 480 / 40 = 12 mol/L.",
+    "clue": "Sua passagem de avião está reservada sob o pseudônimo 'Sódio'.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q28",
+    "prompt": "O processo exige dissolver exatamente 120 g de um composto. Se a solubilidade nessa temperatura é 40 g/100 g de H2O, quantos gramas de água são necessários no mínimo?",
+    "answer": "300",
+    "hint": "Para cada 40 g, precisa-se de 100 g de água. Descubra quantas vezes o número 40 cabe no 120 e multiplique.",
+    "explanation": "120 é 3 vezes o valor de 40. Logo, precisamos de 3 vezes 100g de água: 300 g.",
+    "clue": "Há um traidor entre as forças da lei ajudando na logística.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q29",
+    "prompt": "Mistura com Reação: 100 mL de HCl 1 mol/L reagiram com 100 mL de NaOH 0,5 mol/L. Qual a concentração final do íon que sobrou em excesso (H+)?",
+    "answer": "0.25",
+    "hint": "Calcule os mols iniciais. O NaOH vai consumir o HCl na proporção 1:1. Veja quanto HCl sobra e divida pelo novo volume total.",
+    "explanation": "H+: 0,1 mol. OH-: 0,05 mol. Sobra 0,05 mol de H+. Volume final = 200 mL = 0,2 L. M = 0,05 / 0,2 = 0,25 mol/L.",
+    "clue": "Ele está se escondendo no galpão número 25.",
+    "difficulty": "difícil"
+  },
+  {
+    "id": "q30",
+    "prompt": "Desafio Final: O veneno tem 0,5 mol de soluto dissolvido em 250 g de solvente. Qual é a Molalidade (mol/kg)?",
+    "answer": "2",
+    "hint": "A molalidade (W) é calculada dividindo os mols do soluto pela massa do solvente APENAS, em quilogramas (kg).",
+    "explanation": "250 g = 0,25 kg. W = 0,5 mol / 0,25 kg = 2 mol/kg.",
+    "clue": "O suspeito acaba de entrar no galpão, cerquem o local agora!",
+    "difficulty": "difícil"
+  }
+]
