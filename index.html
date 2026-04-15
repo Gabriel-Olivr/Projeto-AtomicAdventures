@@ -16,7 +16,6 @@
         .screen { width: 100%; max-width: 700px; text-align: center; }
         .hidden { display: none !important; }
         
-        /* SISTEMA ANTI-COLA */
         .noselect { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
         .pixel-text { font-size: 2rem; color: #f1c40f; text-shadow: 4px 4px #c0392b; margin-bottom: 10px; }
@@ -41,7 +40,7 @@
         .avatar-img { max-width: 100%; max-height: 100%; image-rendering: pixelated; object-fit: contain; transform: scale(1.5); }
 
         /* ==========================================
-           TELA DE JOGO E HUD (TELA CHEIA REAL)
+           TELA DE JOGO E HUD
            ========================================== */
         #game-ui { width: 100vw; height: 100vh; display: flex; flex-direction: column; background: #111; }
         
@@ -88,6 +87,11 @@
         #suspect-feedback { font-size: 1rem; text-align: center; margin-bottom: 15px; height: 25px; }
         .success { color: #27ae60; }
         .error { color: #c0392b; }
+
+        /* BALÃO DE DIÁLOGO DO NPC */
+        #npc-dialog { position: absolute; bottom: 5%; left: 10%; width: 80%; z-index: 30; padding: 20px; border-color: #2980b9; }
+        #npc-name { font-size: 1.2rem; color: #2980b9; margin-bottom: 10px; }
+        #npc-text { font-size: 0.9rem; line-height: 1.6; color: #2c3e50; }
     </style>
 </head>
 <body id="main-body">
@@ -138,16 +142,19 @@
             <div id="canvas-container">
                 <canvas id="gameCanvas"></canvas>
                 
+                <div id="npc-dialog" class="hidden pokemon-box">
+                    <h3 id="npc-name">THALLYS (Técnico)</h3>
+                    <p id="npc-text">...</p>
+                    <p style="font-size: 0.6rem; color: #7f8c8d; text-align: right; margin-top: 15px;">[Pressione E para fechar]</p>
+                </div>
+
                 <div id="interaction-overlay" class="hidden">
                     <div class="dialog-box pokemon-box" oncontextmenu="return false;">
                         <h3 id="puzzle-title">DESAFIO</h3>
                         <span id="puzzle-diff"></span>
-                        
                         <p id="puzzle-prompt" class="noselect"></p>
                         <p id="puzzle-hint-text" class="noselect"></p>
-                        
                         <input type="text" id="puzzle-answer" class="pixel-input" placeholder="Digite sua resposta..." autocomplete="off" onpaste="return false;" ondrop="return false;">
-                        
                         <div class="button-group-gba">
                             <button id="btn-submit-answer" class="pixel-button gba-btn">RESPONDER</button>
                             <button id="btn-hint" class="pixel-button gba-btn warning">VER DICA (-30%)</button>
@@ -250,6 +257,11 @@
                 loadImg('porta_sala', 'img/PORTA_SALA_PRONTA.png');
                 loadImg('estante', 'img/ESTANTE_LIVROS_PRONTO.png');
                 loadImg('piso_bib', 'img/PISO_BIBLIOTECA_PRONTO.png');
+                loadImg('piso_lab', 'img/PISO_LAB_PRONTO.png');
+                loadImg('mesas_lab', 'img/MESAS_LAB.png');
+                
+                // === ATENÇÃO AQUI: Extensão .png ===
+                loadImg('npc_thallys', 'img/NPC_THALLYS.png'); // Se for .jpg, altere essa linha!
 
                 // --- SISTEMA DE SORTEIO VIA FETCH ---
                 let questionsPool = { mat: { facil: [], medio: [], dificil: [] }, chem: { facil: [], medio: [], dificil: [] } };
@@ -263,7 +275,7 @@
                     const dataMat = await resMat.json();
                     dataMat.forEach(q => {
                         let diff = normalizeStr(q.difficulty);
-                        if (diff === 'media') diff = 'medio'; // Proteção extra caso venha 'media' no JSON
+                        if (diff === 'media') diff = 'medio'; 
                         if (questionsPool.mat[diff]) questionsPool.mat[diff].push(q);
                     });
                     
@@ -275,8 +287,9 @@
                         if (questionsPool.chem[diff]) questionsPool.chem[diff].push(q);
                     });
                 } catch (e) {
-                    alert("ERRO AO CARREGAR JSON: Certifique-se de estar rodando com o Live Server e que a pasta Modules existe com os nomes corretos.");
-                    console.error(e);
+                    console.error("ERRO AO CARREGAR JSON. Mock data injetado.", e);
+                    const mockQ = (d) => ({ prompt: `Simulação de questão ${d}. Responda: 1`, answer: '1', hint: 'A resposta é 1.'});
+                    ['facil', 'medio', 'dificil'].forEach(d => { for(let i=0; i<10; i++) { questionsPool.mat[d].push(mockQ(d)); questionsPool.chem[d].push(mockQ(d)); } });
                 }
 
                 // --- MAPAS ---
@@ -295,10 +308,7 @@
                             [1,1,1,1,1,1,1,6,6,1,1,1,1,1,1,1] 
                         ],
                         doors: [{ x: 7, y: 8, target: 'patio', targetX: 7, targetY: 1 }, { x: 8, y: 8, target: 'patio', targetX: 8, targetY: 1 }],
-                        puzzles: [
-                            { x: 2, y: 4, type: 'mat', clue: 'A pessoa usa oculos e gosta de xadrez.', objectName: 'estante' },
-                            { x: 13, y: 5, type: 'chem', clue: 'Deixou uma luva no local.', objectName: 'bancada' }
-                        ]
+                        puzzles: []
                     },
                     patio: {
                         name: 'PÁTIO (HUB)',
@@ -318,29 +328,23 @@
                             { x: 0, y: 4, target: 'biblioteca', targetX: 14, targetY: 4 }, { x: 0, y: 5, target: 'biblioteca', targetX: 14, targetY: 5 },
                             { x: 15, y: 4, target: 'laboratorio', targetX: 1, targetY: 4 }, { x: 15, y: 5, target: 'laboratorio', targetX: 1, targetY: 5 }
                         ],
-                        puzzles: [
-                            { x: 2, y: 7, type: 'mat', clue: 'O suspeito foi visto no patio as 10h.', objectName: 'árvore' },
-                            { x: 11, y: 3, type: 'chem', clue: 'Usa perfume cheiroso no casaco.', objectName: 'lixeira' }
-                        ]
+                        puzzles: []
                     },
                     laboratorio: {
                         name: 'LABORATÓRIO',
                         map: [
                             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                            [1,0,0,13,13,0,0,0,0,13,13,0,0,0,0,1], 
+                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1], 
+                            [1,0,0,17,0,0,17,0,0,17,0,0,17,0,0,1], 
                             [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                            [6,0,0,0,0,0,13,0,0,0,4,0,0,0,0,1], 
+                            [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1], 
                             [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                            [1,0,0,0,0,0,0,0,13,0,0,0,0,0,0,1], 
-                            [1,0,0,13,13,0,0,0,0,13,13,0,0,0,0,1],
+                            [1,0,0,17,0,0,17,0,0,17,0,0,17,0,0,1], 
+                            [1,16,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
                         ],
                         doors: [{ x: 0, y: 4, target: 'patio', targetX: 14, targetY: 4 }, { x: 0, y: 5, target: 'patio', targetX: 14, targetY: 5 }],
-                        puzzles: [
-                            { x: 6, y: 4, type: 'chem', clue: 'O suspeito trabalhou no turno da manha.', objectName: 'armário' },
-                            { x: 8, y: 6, type: 'chem', clue: 'O suspeito manuseou acidos.', objectName: 'estufa' }
-                        ]
+                        puzzles: []
                     },
                     biblioteca: {
                         name: 'BIBLIOTECA',
@@ -348,23 +352,54 @@
                             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
                             [1,0,12,12,12,0,0,12,12,12,0,0,12,12,0,1], 
                             [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                            [1,0,0,12,0,0,0,0,0,0,0,0,0,0,0,6], 
-                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6],
-                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                             [1,0,12,12,12,0,0,12,12,12,0,0,12,12,0,1], 
+                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6], 
+                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6],
+                            [1,0,12,12,12,0,0,12,12,12,0,0,12,12,0,1], 
+                            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1], 
                             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
                         ],
                         doors: [{ x: 15, y: 4, target: 'patio', targetX: 1, targetY: 4 }, { x: 15, y: 5, target: 'patio', targetX: 1, targetY: 5 }],
-                        puzzles: [
-                            { x: 3, y: 4, type: 'mat', clue: 'Foi visto pegando livros antigos.', objectName: 'estante' }
-                        ]
+                        puzzles: []
                     }
                 };
 
-                const solidTiles = [1, 4, 5, 8, 9, 10, 11, 12, 13, 15];
+                const solidTiles = [1, 4, 5, 8, 9, 10, 11, 12, 13, 15, 16, 17];
 
-                // DISTRIBUIÇÃO DE PONTOS (Usando as chaves corretas: facil, medio, dificil)
+                // ==========================================
+                // LÓGICA DE SORTEIO DE POSIÇÕES (ESCONDERIJOS)
+                // ==========================================
+                const tileNames = { 5:'árvore', 8:'banco', 9:'balanço', 10:'poste', 11:'lixeira', 12:'estante', 13:'bancada', 15:'árvore', 17:'bancada' };
+
+                function getRandomSpawns(mapArray, allowedTiles, count) {
+                    let options = [];
+                    for(let y=0;y<mapArray.length;y++){
+                        for(let x=0;x<mapArray[y].length;x++){
+                            if(allowedTiles.includes(mapArray[y][x])) options.push({x, y, tile: mapArray[y][x]});
+                        }
+                    }
+                    options.sort(() => Math.random() - 0.5);
+                    return options.slice(0, count);
+                }
+
+                // Sorteia os Esconderijos nas Salas
+                let sMat = getRandomSpawns(rooms.sala.map, [12], 1)[0];
+                let sChem = getRandomSpawns(rooms.sala.map, [13], 1)[0];
+                rooms.sala.puzzles.push({x: sMat.x, y: sMat.y, type:'mat', clue:'A pessoa usa oculos e gosta de xadrez.', objectName: tileNames[sMat.tile]});
+                rooms.sala.puzzles.push({x: sChem.x, y: sChem.y, type:'chem', clue:'Deixou uma luva no local.', objectName: tileNames[sChem.tile]});
+
+                let pSpawns = getRandomSpawns(rooms.patio.map, [5,8,9,10,11,15], 2);
+                rooms.patio.puzzles.push({x: pSpawns[0].x, y: pSpawns[0].y, type:'mat', clue:'O suspeito foi visto no patio as 10h.', objectName: tileNames[pSpawns[0].tile]});
+                rooms.patio.puzzles.push({x: pSpawns[1].x, y: pSpawns[1].y, type:'chem', clue:'Usa perfume cheiroso no casaco.', objectName: tileNames[pSpawns[1].tile]});
+
+                let lSpawns = getRandomSpawns(rooms.laboratorio.map, [17], 2);
+                rooms.laboratorio.puzzles.push({x: lSpawns[0].x, y: lSpawns[0].y, type:'chem', clue:'O suspeito trabalhou no turno da manha.', objectName: tileNames[lSpawns[0].tile]});
+                rooms.laboratorio.puzzles.push({x: lSpawns[1].x, y: lSpawns[1].y, type:'chem', clue:'O suspeito manuseou acidos.', objectName: tileNames[lSpawns[1].tile]});
+
+                let bSpawns = getRandomSpawns(rooms.biblioteca.map, [12], 1);
+                rooms.biblioteca.puzzles.push({x: bSpawns[0].x, y: bSpawns[0].y, type:'mat', clue:'Foi visto pegando livros antigos.', objectName: tileNames[bSpawns[0].tile]});
+
+                // --- DISTRIBUIÇÃO DAS 7 PERGUNTAS ---
                 let slots = ['facil', 'facil', 'medio', 'medio', 'medio', 'dificil', 'dificil'];
                 slots.sort(() => Math.random() - 0.5); 
                 let slotIndex = 0;
@@ -374,7 +409,7 @@
                         let diff = slots[slotIndex++];
                         let pool = questionsPool[p.type] && questionsPool[p.type][diff] ? questionsPool[p.type][diff] : [];
                         
-                        let q = pool.length > 0 ? pool.splice(Math.floor(Math.random() * pool.length), 1)[0] : {prompt: "Erro: Insira mais perguntas no JSON para o nível " + diff, answer: "0", hint: "Verifique seu JSON."};
+                        let q = pool.length > 0 ? pool.splice(Math.floor(Math.random() * pool.length), 1)[0] : {prompt: "Erro no Banco de Dados.", answer: "0", hint: "N/A"};
                         
                         p.prompt = q.prompt; p.answer = q.answer; p.hint = q.hint;
                         p.difficulty = diff; 
@@ -383,6 +418,9 @@
                     });
                 }
 
+                // ==========================================
+                // LÓGICA DE SUSPEITOS DINÂMICA
+                // ==========================================
                 const suspects = [
                     { name: 'Carlos', role: 'Professor de Quimica', description: 'Usa jaleco branco e oculos.', clues: [] },
                     { name: 'Mariana', role: 'Bibliotecaria', description: 'Usa oculos e ama xadrez.', clues: [] },
@@ -409,7 +447,7 @@
 
                 function getTileColor(tile, roomId) {
                     if (tile === 1) { switch (roomId) { case 'sala': return '#7B5B3A'; case 'laboratorio': return '#5A6E7A'; case 'biblioteca': return '#8B5E3C'; case 'patio': return '#3D7A3D'; default: return '#34495e'; } }
-                    if (tile === 0 || tile === 12 || tile === 13) { switch (roomId) { case 'sala': return '#C9B896'; case 'laboratorio': return '#D0D0D0'; case 'biblioteca': return '#E8D5B0'; case 'patio': return '#6AAF5E'; default: return '#999'; } }
+                    if (tile === 0 || tile === 12 || tile === 13 || tile === 17) { switch (roomId) { case 'sala': return '#C9B896'; case 'laboratorio': return '#D0D0D0'; case 'biblioteca': return '#E8D5B0'; case 'patio': return '#6AAF5E'; default: return '#999'; } }
                     if (tile === 6) return '#2c3e50'; 
                     if (tile === 7) return '#95a5a6'; 
                     return '#999';
@@ -425,42 +463,69 @@
                         for (let x = 0; x < map[y].length; x++) {
                             const tile = map[y][x];
                             
-                            if (currentRoomId === 'patio') {
-                                if (tile === 1 && (y === 0 || x === 0 || x === COLS - 1)) {
-                                    if (images.parede_ext.loaded) ctx.drawImage(images.parede_ext.img, x * TILE, y * TILE, TILE, TILE);
-                                    else { ctx.fillStyle = '#7B5B3A'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
-                                } else if (tile === 6) {
-                                    if (y === 0 && images.porta_sala.loaded) ctx.drawImage(images.porta_sala.img, x * TILE, y * TILE, TILE, TILE);
-                                    else { ctx.fillStyle = '#2c3e50'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
-                                } else {
+                            // PAREDES EXTERNAS E TRATAMENTO DA PAREDE INFERIOR DO PÁTIO
+                            if (tile === 1) {
+                                if (currentRoomId === 'patio' && y === 8) {
                                     if (images.grama.loaded) ctx.drawImage(images.grama.img, x * TILE, y * TILE, TILE, TILE);
                                     else { ctx.fillStyle = '#6AAF5E'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
-                                    
-                                    if (tile === 7 && images.caminho.loaded) {
-                                        ctx.drawImage(images.caminho.img, x * TILE, y * TILE, TILE + 1, TILE + 1);
+                                } 
+                                else if (images.parede_ext.loaded) {
+                                    ctx.drawImage(images.parede_ext.img, x * TILE, y * TILE, TILE, TILE);
+                                }
+                            } 
+                            // PISOS ESPECÍFICOS E PORTAS LATERAIS DO PATIO
+                            else if (currentRoomId === 'patio' && (tile === 0 || tile === 7 || tile === 12 || tile === 13 || tile === 15 || tile === 5 || tile === 8 || tile === 9 || tile === 10 || tile === 11 || tile === 6)) {
+                                if (images.grama.loaded) ctx.drawImage(images.grama.img, x * TILE, y * TILE, TILE, TILE);
+                                else { ctx.fillStyle = '#6AAF5E'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
+                                
+                                if (tile === 7 && images.caminho.loaded) {
+                                    ctx.drawImage(images.caminho.img, x * TILE, y * TILE, TILE + 1, TILE + 1);
+                                }
+                                
+                                if (tile === 6) {
+                                    if (images.porta_sala.loaded) {
+                                        ctx.save();
+                                        ctx.translate(x * TILE + TILE / 2, y * TILE + TILE / 2);
+                                        if (x === 0) ctx.rotate(-Math.PI / 2);
+                                        else if (x === COLS - 1) ctx.rotate(Math.PI / 2);
+                                        else if (y === ROWS - 1) ctx.rotate(Math.PI * 2);
+                                        
+                                        ctx.drawImage(images.porta_sala.img, -TILE / 2, -TILE / 2, TILE, TILE);
+                                        ctx.restore();
+                                    } else {
+                                        ctx.fillStyle = '#2c3e50'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
                                     }
                                 }
                             } 
-                            else if (currentRoomId === 'biblioteca') {
-                                if (tile === 1) { 
-                                    ctx.fillStyle = getTileColor(tile, currentRoomId); ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
-                                } else if (tile === 6) { 
-                                    ctx.fillStyle = '#2c3e50'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
-                                } else { 
-                                    if (images.piso_bib.loaded) ctx.drawImage(images.piso_bib.img, x * TILE, y * TILE, TILE, TILE);
-                                    else { ctx.fillStyle = '#E8D5B0'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
-                                }
+                            else if (currentRoomId === 'biblioteca' && tile !== 6 && tile !== 1) {
+                                if (images.piso_bib.loaded) ctx.drawImage(images.piso_bib.img, x * TILE, y * TILE, TILE, TILE);
+                                else { ctx.fillStyle = '#E8D5B0'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
+                            }
+                            else if (currentRoomId === 'laboratorio' && tile !== 6 && tile !== 1) {
+                                if (images.piso_lab.loaded) ctx.drawImage(images.piso_lab.img, x * TILE, y * TILE, TILE, TILE);
+                                else { ctx.fillStyle = '#D0D0D0'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE); }
                             }
                             else {
-                                if (currentRoomId === 'patio' && y === ROWS - 1 && tile === 1) {
-                                     if (images.grama.loaded) ctx.drawImage(images.grama.img, x * TILE, y * TILE, TILE, TILE);
-                                } else {
-                                     ctx.fillStyle = getTileColor(tile, currentRoomId);
-                                     ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
+                                if (tile === 6) {
+                                    if (images.porta_sala.loaded) {
+                                        ctx.save();
+                                        ctx.translate(x * TILE + TILE / 2, y * TILE + TILE / 2);
+                                        
+                                        if (x === 0) ctx.rotate(-Math.PI / 2);
+                                        else if (x === COLS - 1) ctx.rotate(Math.PI / 2);
+                                        else if (y === ROWS - 1) ctx.rotate(Math.PI * 2);
+                                        
+                                        ctx.drawImage(images.porta_sala.img, -TILE / 2, -TILE / 2, TILE, TILE);
+                                        ctx.restore();
+                                    } else {
+                                        ctx.fillStyle = '#2c3e50'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
+                                    }
+                                } else if (tile === 0) {
+                                    ctx.fillStyle = '#C9B896'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
                                 }
                             }
 
-                            if ((tile === 0 || tile === 6 || tile === 7) && currentRoomId !== 'biblioteca' && currentRoomId !== 'patio') {
+                            if ((tile === 0 || tile === 6 || tile === 7) && currentRoomId !== 'biblioteca' && currentRoomId !== 'patio' && currentRoomId !== 'laboratorio') {
                                 ctx.strokeStyle = 'rgba(0,0,0,0.05)'; ctx.lineWidth = 2; ctx.strokeRect(x * TILE, y * TILE, TILE, TILE);
                             }
                         }
@@ -491,6 +556,24 @@
                                 ctx.drawImage(images.estante.img, x * TILE - offset, y * TILE - offset * 1.2, tSize, tSize);
                             } else if (tile === 13) {
                                 ctx.fillStyle = '#9b59b6'; ctx.fillRect(x*TILE + 10, y*TILE + 10, TILE-20, TILE-20);
+                            } else if (tile === 17 && images.mesas_lab.loaded) {
+                                const tSize = TILE * 1.4; const offset = (tSize - TILE) / 2;
+                                ctx.drawImage(images.mesas_lab.img, x * TILE - offset, y * TILE - offset * 1.2, tSize, tSize);
+                            } else if (tile === 16) {
+                                if (images.npc_thallys.loaded) {
+                                    ctx.imageSmoothingEnabled = true;
+                                    const npcWidth = TILE * 2.2;  
+                                    const npcHeight = TILE * 1.8;
+                                    const offX = (npcWidth - TILE) / 2;
+                                    const offY = (npcHeight - TILE) / 1.4;
+                                    ctx.drawImage(images.npc_thallys.img, x * TILE - offX, y * TILE - offY, npcWidth, npcHeight);
+                                    ctx.imageSmoothingEnabled = false; 
+                                } else {
+                                    // HOLOGRAMA DE SEGURANÇA: Se a imagem falhar, desenha um quadrado rosa!
+                                    ctx.fillStyle = '#e056fd'; 
+                                    ctx.fillRect(x*TILE + 10, y*TILE + 10, TILE-20, TILE-20);
+                                    ctx.fillStyle = '#fff'; ctx.font = `bold ${TILE/6}px "Press Start 2P"`; ctx.fillText('NPC', x*TILE+TILE/2, y*TILE+TILE/2);
+                                }
                             } else if (tile === 4) {
                                 ctx.fillStyle = '#27ae60'; ctx.fillRect(x*TILE+15, y*TILE+15, TILE-30, TILE-30);
                                 ctx.fillStyle = '#fff'; ctx.font = `bold ${TILE/6}px "Press Start 2P"`; ctx.fillText('MESA', x*TILE+TILE/2, y*TILE+TILE/2);
@@ -502,7 +585,7 @@
                                     ctx.fillStyle = 'rgba(10, 10, 30, 0.7)'; ctx.fillRect(x * TILE, y * TILE, TILE, TILE);
                                 } else if (solidTiles.includes(tile)) {
                                     const p = currentRoom.puzzles.find(pz => pz.x === x && pz.y === y);
-                                    if (p || tile === 4) {
+                                    if (p || tile === 4 || tile === 16) {
                                         ctx.strokeStyle = '#00ffff'; ctx.lineWidth = 8; ctx.strokeRect(x * TILE, y * TILE, TILE, TILE);
                                     }
                                 }
@@ -524,6 +607,7 @@
                     let interactText = "";
                     
                     if (adjCoords.some(c => currentRoom.map[c.y] && currentRoom.map[c.y][c.x] === 4)) interactText = "SINTETIZAR EVIDÊNCIAS";
+                    else if (adjCoords.some(c => currentRoom.map[c.y] && currentRoom.map[c.y][c.x] === 16)) interactText = "FALAR COM THALLYS";
                     else {
                         for(let c of adjCoords) {
                             const pz = currentRoom.puzzles.find(p => p.x === c.x && p.y === c.y);
@@ -531,7 +615,12 @@
                         }
                     }
 
-                    if (interactText !== "" && document.getElementById('interaction-overlay').classList.contains('hidden') && document.getElementById('suspect-overlay').classList.contains('hidden') && document.getElementById('crafting-overlay').classList.contains('hidden')) {
+                    const isAnyModalOpen = !document.getElementById('interaction-overlay').classList.contains('hidden') || 
+                                           !document.getElementById('suspect-overlay').classList.contains('hidden') || 
+                                           !document.getElementById('crafting-overlay').classList.contains('hidden') ||
+                                           !document.getElementById('npc-dialog').classList.contains('hidden');
+
+                    if (interactText !== "" && !isAnyModalOpen) {
                         ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
                         ctx.fillRect(px * TILE - 120, py * TILE - 70, TILE + 240, 50);
                         ctx.fillStyle = '#fff'; ctx.font = `bold 16px "Press Start 2P"`;
@@ -543,11 +632,12 @@
 
                 // --- CONTROLES ---
                 window.addEventListener('keydown', e => {
-                    const isModalOpen = !document.getElementById('interaction-overlay').classList.contains('hidden') || 
-                                        !document.getElementById('suspect-overlay').classList.contains('hidden') ||
-                                        !document.getElementById('crafting-overlay').classList.contains('hidden');
+                    const isAnyModalOpen = !document.getElementById('interaction-overlay').classList.contains('hidden') || 
+                                           !document.getElementById('suspect-overlay').classList.contains('hidden') || 
+                                           !document.getElementById('crafting-overlay').classList.contains('hidden') ||
+                                           !document.getElementById('npc-dialog').classList.contains('hidden');
                     
-                    if (isModalOpen) {
+                    if (isAnyModalOpen) {
                         if (e.key.toLowerCase() === 'e' || e.key.toLowerCase() === 'q') { closeModals(); e.preventDefault(); }
                         return;
                     }
@@ -584,6 +674,12 @@
                     const adjCoords = [{x: px, y: py}, {x: px+1, y: py}, {x: px-1, y: py}, {x: px, y: py+1}, {x: px, y: py-1}];
                     
                     if (adjCoords.some(c => currentRoom.map[c.y] && currentRoom.map[c.y][c.x] === 4)) { openCrafting(); return; }
+                    
+                    if (adjCoords.some(c => currentRoom.map[c.y] && currentRoom.map[c.y][c.x] === 16)) { 
+                        document.getElementById('npc-text').innerText = "Olá, Detetive! Alguém bagunçou meus reagentes... Tome cuidado, o culpado deve ter deixado rastros nas bancadas espalhadas pela escola.";
+                        document.getElementById('npc-dialog').classList.remove('hidden');
+                        return; 
+                    }
 
                     for(let c of adjCoords) {
                         const puzzle = currentRoom.puzzles.find(p => p.x === c.x && p.y === c.y);
@@ -704,12 +800,30 @@
 
                 function accuse(name) {
                     const feedback = document.getElementById('suspect-feedback');
-                    if (name === 'Carlos') {
-                        feedback.textContent = 'PARABÉNS! Você descobriu o Culpado!'; feedback.className = 'success';
+                    
+                    let maxClues = -1;
+                    let culprits = [];
+                    suspects.forEach(s => {
+                        if (s.clues.length > maxClues) {
+                            maxClues = s.clues.length;
+                            culprits = [s.name];
+                        } else if (s.clues.length === maxClues) {
+                            culprits.push(s.name);
+                        }
+                    });
+
+                    if (maxClues === 0) {
+                        feedback.textContent = 'Não temos provas suficientes contra ninguém ainda!';
+                        feedback.className = 'error';
+                        return;
+                    }
+
+                    if (culprits.includes(name)) {
+                        feedback.textContent = `PARABÉNS! As evidências apontam para ${name}!`; 
+                        feedback.className = 'success';
                         setTimeout(() => alert(`Caso Encerrado com Sucesso! Pontuação Final: ${playerState.score} de 1000.`), 1000);
                     } else {
-                        const clues = suspects.find(s => s.name === name)?.clues || [];
-                        feedback.textContent = clues.length > 0 ? `Incorreto. ${name} tem evidências circunstanciais, mas não é o culpado principal.` : `Falso. Não há nada contra ${name}.`;
+                        feedback.textContent = `Incorreto. As provas coletadas apontam em outra direção...`;
                         feedback.className = 'error';
                     }
                 }
@@ -718,6 +832,7 @@
                     document.getElementById('interaction-overlay').classList.add('hidden');
                     document.getElementById('suspect-overlay').classList.add('hidden');
                     document.getElementById('crafting-overlay').classList.add('hidden');
+                    document.getElementById('npc-dialog').classList.add('hidden');
                     currentPuzzle = null;
                 };
                 document.getElementById('btn-close-dialog').addEventListener('click', closeModals);
